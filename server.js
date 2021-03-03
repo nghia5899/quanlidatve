@@ -9,7 +9,7 @@ app.get('/listtuyenxe', function(req, res) {
         res.json(results)
     })
 })
-
+console.log('sua doi');
 app.listen(3000, function() {
     console.log('Node server running @ http://localhost:8888')
 })
