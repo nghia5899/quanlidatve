@@ -1,6 +1,6 @@
 const express = require('express');
-const routes = require('./routes/router');
 const bodyParser = require('body-parser');
+const route = require('./routes/index_routes');
 
 const app = express();
 
@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-routes(app);
+app.use(express.json());
+
+route(app);
 
 app.listen(port, function() {
     console.log('Node server running @ http://localhost:'+port);
