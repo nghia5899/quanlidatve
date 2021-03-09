@@ -1,19 +1,17 @@
-var express = require('express');
+const express = require('express');
+const routes = require('./routes/router');
+const bodyParser = require('body-parser');
 
-var database = require('./database')
+const app = express();
 
-var app = express();
+const port = process.env.PORT || 3000;
 
-app.get('/', function(req, res) {
-    res.send('Xin chao');
-});
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/listtuyenxe', function(req, res) {
-    database.getAll(function(results) {
-        res.json(results)
-    })
-});
+app.use(bodyParser.json());
 
-app.listen(process.env.PORT, function() {
-    console.log('Node server running @ http://localhost:'+process.env.PORT);
+routes(app);
+
+app.listen(port, function() {
+    console.log('Node server running @ http://localhost:'+port);
 });
