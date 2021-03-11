@@ -3,14 +3,14 @@ const diaDiemRoutes = require('./diadiem_routes');
 
 function route(app) {
 
-    app.get('/tuyenxe', tuyenxeRoutes);
+    app.use('/tuyenxe', tuyenxeRoutes);
 
-    app.get('/tinh', diaDiemRoutes);
+    app.use('/tinh', diaDiemRoutes);
 
     app.get('/', (req, res) => {
         console.log('Index');
     });
-
+    
 }
 
 module.exports = route;

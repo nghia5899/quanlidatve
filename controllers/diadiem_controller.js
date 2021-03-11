@@ -1,33 +1,35 @@
 const db = require('../util/database');
+const diaDiemModel = require('../models/diadiem_model');
 
 class DiaDiemController {
-
-  tinh(req, res) {
-    let sql = "SELECT * FROM tinh";
-    db.query(sql, (err, response) => {
-      if (err)
+  tinh(req, res, next) {
+    diaDiemModel.getDanhSachTinh(function(err, response) {
+      if (err) {
         res.json({
           status: false,
           message: err.toString(),
+        });
+      }
+      else {
+        res.json({
+          status: true,
           data: response,
         });
-      res.json({
-        status: true,
-        data: response,
-      });
-    });
+      }
+    })
+
   }
-  
   diemdung(req, res) {
     let sql = "SELECT * FROM diemdung WHERE MaTinh = ? ";
-    var matinh = req.params.MaTinh;
-    db.query(sql, (err, response) => {
-      if (err)
+    var matinh = req.query.matinh;
+    db.query(sql, matinh, (err, response) => {
+      if (err) {
         res.json({
           status: false,
           message: err.toString(),
           data: response,
         });
+      }
       res.json({
         status: true,
         data: response,

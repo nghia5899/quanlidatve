@@ -1,8 +1,23 @@
+const tuyenxeModels = require('../models/tuyenxe_models')
+
 class TuyenXeController {
   tuyenxe(req, res) {
-    res.json({
-      'status': true,
-    });
+    var madiemdi = req.query.madiemdi;
+    var madiemden = req.query.madiemden;
+    tuyenxeModels.getTuyenXe(madiemdi, madiemden, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: err.toString(),
+        });
+      }
+      else {
+        res.json({
+          status: true,
+          data: response,
+        });
+      }
+    })
   }
 }
 

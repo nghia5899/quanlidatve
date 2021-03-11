@@ -3,6 +3,8 @@ const router = express.Router();
 
 const diaDiemController = require('../controllers/diadiem_controller');
 
-router.use('/tinh', diaDiemController.tinh);
+router.use('/diemdung', diaDiemController.diemdung);
+
+router.use('/', diaDiemController.tinh);
 
 module.exports = router;
