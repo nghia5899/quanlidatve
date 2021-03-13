@@ -17,24 +17,22 @@ class DiaDiemController {
         });
       }
     })
-
   }
   diemdung(req, res) {
-    let sql = "SELECT * FROM diemdung WHERE MaTinh = ? ";
-    var matinh = req.query.matinh;
-    db.query(sql, matinh, (err, response) => {
+    diaDiemModel.getDiemDung(req.query.matinh, function(err, response) {
       if (err) {
         res.json({
           status: false,
           message: err.toString(),
+        });
+      }
+      else {
+        res.json({
+          status: true,
           data: response,
         });
       }
-      res.json({
-        status: true,
-        data: response,
-      });
-    });
+    })
   }
 }
 

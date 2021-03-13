@@ -1,6 +1,7 @@
 const tuyenxeRoutes = require('./tuyenxe_routes')
 const diaDiemRoutes = require('./diadiem_routes')
-const khachHangroutes = require('./khachhang_routes')
+const khachHangRoutes = require('./khachhang_routes')
+const veRoutes = require('./ve_routes')
 
 function route(app) {
 
@@ -8,7 +9,9 @@ function route(app) {
 
     app.use('/tinh', diaDiemRoutes)
 
-    app.use('/thongtin', khachHangroutes)
+    app.use('/thongtin', khachHangRoutes)
+
+    app.use('/ve', veRoutes)
 
     app.get('/', (req, res) => {
         console.log('Index');

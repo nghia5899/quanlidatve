@@ -19,6 +19,25 @@ class TuyenXeController {
       }
     })
   }
+  tinhtrangghe(req, res) {
+    var matuyen = req.query.matuyen;
+    var ngay = req.query.ngay;
+    tuyenxeModels.getTinhTrangGhe(matuyen, ngay, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: err.toString(),
+        });
+      }
+      else {
+        res.json({
+          status: true,
+          data: response,
+        });
+      }
+    })
+
+  }
 }
 
 module.exports = new TuyenXeController;

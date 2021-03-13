@@ -14,5 +14,17 @@ diaDiemModel.getDanhSachTinh = (result) => {
     }
   });
 }
+diaDiemModel.getDiemDung = (matinh, result) => {
+  db.query("SELECT * FROM diemdung WHERE MaTinh = "+ matinh, (err, response) => {
+    if (err) {
+      console.log(err); 
+      return result(err, null)
+    }
+    else {
+      console.log('GetDanhDiemDung thanh cong');
+      return result(null, response);
+    }
+  });
+}
 
 module.exports = diaDiemModel;

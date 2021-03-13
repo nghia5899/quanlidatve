@@ -13,10 +13,25 @@ diaDiemModel.getTuyenXe = (madiemdi, madiemden, result) => {
       return result(err, null)
     }
     else {
-      console.log('GetThongTin thanh cong')
+      console.log('GetTuyenXe thanh cong');
       return result(null, response);
     }
   });
 }
 
-module.exports = diaDiemModel;
+diaDiemModel.getTinhTrangGhe = (matuyen, ngay, result) => {
+  let sql = "SELECT MaTuyen, Ngay, MaGhe FROM `datvexe` WHERE Matuyen = " + matuyen + " AND Ngay = '" + ngay + "'"
+  console.log(sql);
+  db.query(sql, (err, response) => {
+    if (err) {
+      console.log(err)
+      return result(err, null)
+    }
+    else {
+      console.log('GetTinhTrangGhe thanh cong')
+      return result(null, response)
+    }
+  });
+}
+
+module.exports = diaDiemModel
