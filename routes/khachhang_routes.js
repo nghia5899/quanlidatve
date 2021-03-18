@@ -3,6 +3,10 @@ const router = express.Router();
 
 const khachHangController = require('../controllers/khachhang_controller');
 
-router.use('/', khachHangController.thongtin);
+router.post('/dangky', khachHangController.dangky)
+
+router.use('/dangnhap', khachHangController.dangnhap)
+
+router.use('/', khachHangController.thongtin)
 
 module.exports = router;

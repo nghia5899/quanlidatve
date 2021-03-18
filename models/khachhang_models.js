@@ -3,7 +3,7 @@ const db = require('../util/database');
 var khachHangModel = {}
 
 khachHangModel.getThongTin = (sodienthoai, result) => {
-  let sql = "SELECT * FROM khachhang where sodienthoai = " + sodienthoai
+  let sql = "SELECT * FROM khachhang where SoDienThoai = " + sodienthoai
   db.query(sql, (err, response) => {
     if (err) {
       console.log(err) 
@@ -15,5 +15,51 @@ khachHangModel.getThongTin = (sodienthoai, result) => {
     }
   });
 }
+
+khachHangModel.dangky = (sodienthoai, ten, email, giotinh, matkhau, result) => {
+  try {
+    let sql = "INSERT INTO `khachhang` (`SoDienThoai`, `Ten`, `Email`, `AnhDaiDien`, `GioiTinh`, `MatKhau`) VALUES ('"+ sodienthoai + "', '"+
+    ten + "', '" + email + "','', '" + giotinh + "','" + matkhau + "')"
+    db.query(sql, (err, response) => {
+      try {
+        if (err) {
+          console.log(err) 
+          return result(err, null)
+        }
+        else {
+          console.log('Dang ky thanh cong')
+          return result(null, response)
+        }
+      } catch(e) {
+        return result(e, null);
+      }
+      
+    });
+  } catch (e) {
+    console.log('log '+ e.toString())
+    return result(e, null);
+  }
+}
+
+khachHangModel.dangnhap = (sodienthoai, matkhau, result) => {
+  let sql = "SELECT * FROM khachhang where SoDienThoai = '" + sodienthoai + "' And MatKhau = '" + matkhau + "'";
+    try {
+      db.query(sql, (err, response) => {
+        if (err) {
+          console.log(err) 
+          return result(err, null)
+        }
+        else {
+          console.log('Dang nhap thanh cong')
+          return result(null, response)
+        }
+      }
+      );
+    } catch (e) {
+      return result(e, null)
+    }
+}
+
+
 
 module.exports = khachHangModel
