@@ -3,7 +3,7 @@ const db = require('../util/database');
 var khachHangModel = {}
 
 khachHangModel.getThongTin = (sodienthoai, result) => {
-  let sql = "SELECT * FROM khachhang where SoDienThoai = " + sodienthoai
+  let sql = "SELECT * FROM khachhang where SoDienThoai = '" + sodienthoai + "'"
   db.query(sql, (err, response) => {
     if (err) {
       console.log(err) 
@@ -12,6 +12,33 @@ khachHangModel.getThongTin = (sodienthoai, result) => {
     else {
       console.log('GetThongTin thanh cong')
       return result(null, response)
+    }
+  });
+}
+
+khachHangModel.capNhatThongTin = (sodienthoai, ten, email, giotinh, matkhau, result) => {
+  let sql = "UPDATE `khachhang` SET `Ten` = '" + ten + "' , `Email` = '" + email + "',"+
+  // `MatKhau` = '" + matkhau + "'` " +
+        " `GioiTinh` = '" + giotinh + "'" + 
+        " WHERE `khachhang`.`SoDienThoai` = '" + sodienthoai + "'"
+  let sql1 = "SELECT * FROM khachhang where SoDienThoai = '" + sodienthoai + "'"
+  db.query(sql, (err, response) => {
+    if (err) {
+      console.log(err) 
+      return result(err, null)
+    }
+    else {
+      db.query(sql1, (err, response1) => {
+        if (err) {
+          console.log(err) 
+          return result(err, null)
+        }
+        else {
+          console.log('GetThongTin thanh cong')
+          return result(null, response1)
+        }
+      });
+      console.log('Sửa thanh cong')
     }
   });
 }
@@ -33,7 +60,6 @@ khachHangModel.dangky = (sodienthoai, ten, email, giotinh, matkhau, result) => {
       } catch(e) {
         return result(e, null);
       }
-      
     });
   } catch (e) {
     console.log('log '+ e.toString())

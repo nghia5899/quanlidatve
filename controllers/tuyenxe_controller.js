@@ -4,7 +4,8 @@ class TuyenXeController {
   tuyenxe(req, res) {
     var madiemdi = req.query.madiemdi;
     var madiemden = req.query.madiemden;
-    tuyenxeModels.getTuyenXe(madiemdi, madiemden, function(err, response) {
+    var ngay = req.query.ngay;
+    tuyenxeModels.getTuyenXe(madiemdi, madiemden, ngay, function(err, response) {
       if (err) {
         res.json({
           status: false,
