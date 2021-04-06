@@ -5,10 +5,10 @@ const controller = require('../controllers/controller.js')
 module.exports = function (app) {
 
   app.route('/tinh')
-    .get(controller.getTinh);
+    .get(controller.getTinh)
 
   app.route('/diemdung')
-    .get(controller.getdiemdung);
+    .get(controller.getdiemdung)
 
   app.route('/');
   

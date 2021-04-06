@@ -58,12 +58,12 @@ khachHangModel.dangky = (sodienthoai, ten, email, giotinh, matkhau, result) => {
           return result(null, response)
         }
       } catch(e) {
-        return result(e, null);
+        return result(e, null)
       }
     });
   } catch (e) {
     console.log('log '+ e.toString())
-    return result(e, null);
+    return result(e, null)
   }
 }
 

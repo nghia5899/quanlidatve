@@ -9,4 +9,4 @@ router.use('/dangky', khachHangController.dangky)
 
 router.use('/sua', khachHangController.suathongtin)
 
-module.exports = router;
+module.exports = router

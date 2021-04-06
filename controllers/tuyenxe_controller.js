@@ -2,9 +2,9 @@ const tuyenxeModels = require('../models/tuyenxe_models')
 
 class TuyenXeController {
   tuyenxe(req, res) {
-    var madiemdi = req.query.madiemdi;
-    var madiemden = req.query.madiemden;
-    var ngay = req.query.ngay;
+    var madiemdi = req.query.madiemdi
+    var madiemden = req.query.madiemden
+    var ngay = req.query.ngay
     tuyenxeModels.getTuyenXe(madiemdi, madiemden, ngay, function(err, response) {
       if (err) {
         res.json({

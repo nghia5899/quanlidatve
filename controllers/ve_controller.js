@@ -20,7 +20,7 @@ class VeController {
   }
   
   vedahuy(req, res) {
-    var sodienthoai = req.header('sodienthoai');
+    var sodienthoai = req.header('sodienthoai')
     veModel.getVeDaHuy(sodienthoai, function(err, response) {
       if (err) {
         res.json({
@@ -64,20 +64,20 @@ class VeController {
       var ngay = listve[i].Ngay
       var maghe = listve[i].MaGhe
       veModel.datve(matuyen, sodienthoai, ngay, maghe, function(err, response) {
-        error = err;
+        error = err
       })
     }
     if (error) {
       res.json({
         status: false,
         message: "Đặt vé không thành công",
-      });
+      })
     }
     else {
       res.json({
         status: true,
         message: "Đặt vé thành công"
-    });
+    })
     }
   }
 
@@ -88,13 +88,13 @@ class VeController {
         res.json({
           status: false,
           message: "Lỗi khi huỷ vé",
-        });
+        })
       }
       else {
         res.json({
           status: true,
           message: "Huỷ vé thành công"
-      });
+      })
     }
   })
   }
@@ -102,4 +102,4 @@ class VeController {
 
 
 
-module.exports = new VeController;
+module.exports = new VeController

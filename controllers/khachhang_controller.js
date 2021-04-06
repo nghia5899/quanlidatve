@@ -14,7 +14,7 @@ class KhachHangController {
         res.json({
           status: true,
           data: response,
-        });
+        })
       }
     })
   }
@@ -52,13 +52,13 @@ class KhachHangController {
       if (err) {
         res.json({
           status: false,
-          message: "Đăng ký thành công",
+          message: "Đăng ký không thành công",
         });
       }
       else {
         res.json({
           status: true,
-          message: "Đăng ký không thành công",
+          message: "Đăng ký thành công",
         });
       }
     })
@@ -92,4 +92,4 @@ class KhachHangController {
   }
 }
 
-module.exports = new KhachHangController;
+module.exports = new KhachHangController

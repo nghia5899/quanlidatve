@@ -9,8 +9,8 @@ diaDiemModel.getDanhSachTinh = (result) => {
       return result(err, null)
     }
     else {
-      console.log('GetDanhSachTinh thanh cong');
-      return result(null, response);
+      console.log('GetDanhSachTinh thanh cong')
+      return result(null, response)
     }
   });
 }
@@ -21,10 +21,10 @@ diaDiemModel.getDiemDung = (matinh, result) => {
       return result(err, null)
     }
     else {
-      console.log('GetDanhDiemDung thanh cong');
-      return result(null, response);
+      console.log('GetDanhDiemDung thanh cong')
+      return result(null, response)
     }
   });
 }
 
-module.exports = diaDiemModel;
+module.exports = diaDiemModel

@@ -14,8 +14,8 @@ function route(app) {
     app.use('/ve', veRoutes)
 
     app.get('/', (req, res) => {
-        console.log('Index');
-    });
+        console.log('Index')
+    })
     
 }
 
