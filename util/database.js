@@ -9,5 +9,12 @@ const db = mysql.createConnection({
     database: config.database || "quanlidatve",
 });
 
+db.connect(function(err) {
+    if (err) {
+        console.log("error " + err)
+        return
+    }
+})
+
 module.exports = db;
 

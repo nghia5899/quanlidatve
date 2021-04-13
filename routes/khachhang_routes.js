@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router(); 
 
-const khachHangController = require('../controllers/khachhang_controller');
+const khachHangController = require('../controllers/khachhang_controller')
+const authenController = require('../controllers/authen_controller')
 
 router.use('/dangnhap', khachHangController.dangnhap)
 

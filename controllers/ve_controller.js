@@ -2,7 +2,7 @@ const veModel = require('../models/ve_model');
 
 class VeController {
   vecuatoi(req, res) {
-    var sodienthoai = req.header('sodienthoai');
+    var sodienthoai = req.decoded.data
     veModel.getVeCuaToi(sodienthoai, function(err, response) {
         if (err) {
           res.json({
@@ -20,7 +20,7 @@ class VeController {
   }
   
   vedahuy(req, res) {
-    var sodienthoai = req.header('sodienthoai')
+    var sodienthoai = req.decoded.data
     veModel.getVeDaHuy(sodienthoai, function(err, response) {
       if (err) {
         res.json({
@@ -38,7 +38,7 @@ class VeController {
   }
 
   lichsu(req, res) {
-    var sodienthoai = req.header('sodienthoai');
+    var sodienthoai = req.decoded.data
     veModel.getLichSu(sodienthoai, function(err, response) {
       if (err) {
           res.json({
@@ -56,7 +56,7 @@ class VeController {
   }
 
   datve(req, res) {
-    var sodienthoai = req.header('sodienthoai');
+    var sodienthoai = req.decoded.data
     var listve = req.body.listve
     var error = false;
     for (var i = 0; i < listve.length; i++) {
@@ -98,8 +98,26 @@ class VeController {
     }
   })
   }
+
+  scanVe(req, res) {
+    var sodienthoai = req.decoded.data
+    var madatve = req.query.madatve
+    veModel.scan(madatve, sodienthoai, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: "Lỗi khi scan QRcode",
+        })
+      }
+      else {
+        res.json({
+          status: true,
+          message: "Quét mã OR thành công",
+          data: response
+        })
+      }
+    })
+  }
 }
-
-
 
 module.exports = new VeController

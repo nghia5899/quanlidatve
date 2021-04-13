@@ -36,4 +36,4 @@ class DiaDiemController {
   }
 }
 
-module.exports = new DiaDiemController;
+module.exports = new DiaDiemController

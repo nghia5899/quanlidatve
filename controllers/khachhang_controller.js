@@ -2,7 +2,7 @@ const khachhang_models = require('../models/khachhang_models')
 
 class KhachHangController {
   thongtin(req, res) {
-    var sodienthoai = req.query.sodienthoai
+    var sodienthoai = req.decoded.data
     khachhang_models.getThongTin(sodienthoai, function(err, response) {
       if (err) {
         res.json({
@@ -20,7 +20,7 @@ class KhachHangController {
   }
 
   suathongtin(req, res) {
-    var sodienthoai = req.header('sodienthoai')
+    var sodienthoai = req.decoded.data
     var ten = req.body.Ten
     var email = req.body.Email
     var gioitinh = req.body.GioiTinh
@@ -30,20 +30,20 @@ class KhachHangController {
         res.json({
           status: false,
           message: "Cập nhật không thành công",
-        });
+        })
       }
       else {
         res.json({
           status: true,
           message: "Cập nhật thành công",
           data: response
-        });
+        })
       }
     })
   }
 
   dangky(req, res) {
-    var sodienthoai = req.body.SoDienThoai
+    var sodienthoai = req.decoded.data
     var ten = req.body.Ten
     var email = req.body.Email
     var gioitinh = req.body.GioiTinh
@@ -65,7 +65,7 @@ class KhachHangController {
   }
 
   dangnhap(req, res) {
-    var sodienthoai = req.body.sodienthoai
+    var sodienthoai = req.decoded.data
     var matkhau = req.body.MatKhau
     khachhang_models.dangnhap(sodienthoai, matkhau, function(err, response) {
       if (err) {

@@ -9,71 +9,120 @@ var veModel = {}
 
 veModel.getVeCuaToi = (sodienthoai, result) => {
   let sql = SQL + sodienthoai + " AND tinhtrangve = 0"
-  db.query(sql, (err, response) => {
-    if (err) {
-      console.log(err)
-      return result(err, null)
-    }
-    else {
-      console.log('GetVeCuaToi thanh cong')
-      return result(null, response)
-    }
-  });
+  try {
+    db.query(sql, (err, response) => {
+      if (err) {
+        console.log(err)
+        return result(err, null)
+      }
+      else {
+        console.log('GetVeCuaToi thanh cong')
+        return result(null, response)
+      }
+    })
+  } catch (error) {
+    return result(error, null)
+  }
 }
 
 veModel.getVeDaHuy = (sodienthoai, result) => {
   let sql = SQL + sodienthoai + " AND tinhtrangve = -1"
-    db.query(sql, (err, response) => {
-      if (err) {
-        return result(err, null)
-      }
-      else {
-        console.log('GetVeDaHuy thanh cong')
-        return result(null, response)
-      }
-    })
+    try {
+      db.query(sql, (err, response) => {
+        if (err) {
+          return result(err, null)
+        }
+        else {
+          console.log('GetVeDaHuy thanh cong')
+          return result(null, response)
+        }
+      })
+    } catch (error) {
+      return result(error, null)
+    }
 }
 
 veModel.getLichSu = (sodienthoai, result) => {
   let sql = SQL + sodienthoai + " AND tinhtrangve = 1"
-    db.query(sql, (err, response) => {
-      if (err) {
-        return result(err, null)
-      }
-      else {
-        console.log('GetLichSu thanh cong')
-        return result(null, response)
-      }
-    })
+    try {
+      db.query(sql, (err, response) => {
+        if (err) {
+          return result(err, null)
+        }
+        else {
+          console.log('GetLichSu thanh cong')
+          return result(null, response)
+        }
+      })
+    } catch (error) {
+      return result(error, null)
+    }
 }
 
 veModel.datve = (matuyen, sodienthoai, ngay, maghe, result) => {
   let sql = "INSERT INTO `datvexe` (`MaDatVe`, `MaTuyen`, `SoDienThoai`, `Ngay`, `MaGhe`, `TinhTrangVe`) "+
     " VALUES (NULL, '"+ matuyen +"', '"+ sodienthoai+"', '"+ ngay+"', '"+ maghe +"', '0')"
-  db.query(sql, (err, response) => {
-    if (err) {
-      console.log(err);
-      return result(err, null)
-    }
-    else {
-      console.log('Dat ve thanh cong thanh cong')
-      return result(null, response)
-    }
-  })
+  try {
+    db.query(sql, (err, response) => {
+      if (err) {
+        console.log(err);
+        return result(err, null)
+      }
+      else {
+        console.log('Dat ve thanh cong thanh cong')
+        return result(null, response)
+      }
+    })
+  } catch (error) {
+    return result(error, null)
+  }
 }
 
 veModel.huyve = (mave, result) => {
   let sql = "UPDATE `datvexe` SET `TinhTrangVe` = '-1' WHERE `datvexe`.`MaDatVe` = " + mave
-  db.query(sql, (err, response) => {
-    if (err) {
-      console.log(err);
-      return result(err, null)
-    }
-    else {
-      console.log('Huy ve thanh cong')
-      return result(null, response)
-    }
-  })
+  try {
+    db.query(sql, (err, response) => {
+      if (err) {
+        console.log(err);
+        return result(err, null)
+      }
+      else {
+        return result(null, response)
+      }
+    })
+  } catch (error) {
+    return result(error, null)
+  }
+}
+
+veModel.scan = (mave, sodienthoai, result) => {
+  let sql = "UPDATE `datvexe` SET `TinhTrangVe` = '1' WHERE `datvexe`.`MaDatVe` = " + mave
+  let sql1 = "SELECT * FROM khachhang where SoDienThoai = '" + sodienthoai + "'"
+  try {
+    db.query(sql, (err, response) => {
+      if (err) {
+        console.log(err);
+        return result(err, null)
+      }
+      else {
+        try {
+          db.query(sql1, (err, response1) => {
+            if (err) {
+              console.log(err) 
+              return result(err, null)
+            }
+            else {
+              return result(null, response1)
+            }
+          })
+        } catch (error) {
+          return result(error, null)
+        }
+      }
+    })
+  } catch (error) {
+    return result(error, null)
+  }
 }
 
 module.exports = veModel
