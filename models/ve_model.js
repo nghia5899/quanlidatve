@@ -1,4 +1,4 @@
-const db = require('../util/database');
+const db = require('../util/database')
 
 const SQL = "SELECT MaDatVe, tuyenxe.MaTuyen, c.TenTinh as TenTinhDi, a.TenDiemDung as TenDiemDi, d.TenTinh as TenTinhDen," + 
   " b.TenDiemDung as TenDiemDen, thoigian.ThoiGianDi, thoigian.ThoiGianDen, thoigian.GiaVe, datvexe.Ngay, datvexe.TinhTrangVe," + 

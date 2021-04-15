@@ -19,7 +19,7 @@ class AuthenController {
 						message: 'Tài khoản hoặc mạt khẩu không đúng',
 						data: response,
 					})
-				}
+				}  
 				else {
 					console.log("Đăng nhập thành công")
 					res.json({
