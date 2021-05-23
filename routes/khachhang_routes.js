@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router(); 
 
 const khachHangController = require('../controllers/khachhang_controller')
-const authenController = require('../controllers/authen_controller')
 
 router.use('/dangnhap', khachHangController.dangnhap)
 
 router.use('/dangky', khachHangController.dangky)
 
 router.use('/sua', khachHangController.suathongtin)
+
+router.use('/doimatkhau', khachHangController.doimatkhau)
 
 module.exports = router

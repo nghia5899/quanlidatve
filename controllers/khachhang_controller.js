@@ -20,12 +20,14 @@ class KhachHangController {
   }
 
   suathongtin(req, res) {
-    var sodienthoai = req.decoded.data
+    var sodienthoai = req.decoded.data.sodienthoai
+    var manhanvien = req.decoded.data.manhanvien
     var ten = req.body.Ten
     var email = req.body.Email
     var gioitinh = req.body.GioiTinh
     var matkhau = req.body.MatKhau
-    khachhang_models.capNhatThongTin(sodienthoai, ten, email, gioitinh, matkhau, function(err, response) {
+    console.log(manhanvien)
+    khachhang_models.capNhatThongTin(sodienthoai, ten, email, gioitinh, manhanvien, function(err, response) {
       if (err) {
         res.json({
           status: false,
@@ -36,6 +38,26 @@ class KhachHangController {
         res.json({
           status: true,
           message: "Cập nhật thành công",
+          data: response
+        })
+      }
+    })
+  }
+
+  doimatkhau(req, res) {
+    var sodienthoai = req.decoded.data.sodienthoai
+    var matkhau = req.body.matkhau
+    khachhang_models.doimatkhau(sodienthoai, matkhau, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: "Đổi mật khẩu không thành công",
+        })
+      }
+      else {
+        res.json({
+          status: true,
+          message: "Đổi mật khẩu thành công",
           data: response
         })
       }

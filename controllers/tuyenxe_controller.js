@@ -20,10 +20,12 @@ class TuyenXeController {
       }
     })
   }
-  tinhtrangghe(req, res) {
-    var matuyen = req.query.matuyen;
-    var ngay = req.query.ngay;
-    tuyenxeModels.getTinhTrangGhe(matuyen, ngay, function(err, response) {
+
+  chuyenxe(req, res) {
+    var madiemdi = req.query.madiemdi
+    var madiemden = req.query.madiemden
+    var ngay = req.query.ngay
+    tuyenxeModels.getChuyenXe(madiemdi, madiemden, ngay, function(err, response) {
       if (err) {
         res.json({
           status: false,
@@ -31,6 +33,27 @@ class TuyenXeController {
         });
       }
       else {
+        console.log(response)
+        res.json({
+          status: true,
+          data: response,
+        });
+      }
+    })
+  }
+
+  tinhtrangghe(req, res) {
+    var machuyen = req.query.machuyen;
+    tuyenxeModels.getTinhTrangGhe(machuyen, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: err.toString(),
+        });
+      }
+      else {
+        console.log('Tinh trang ghe')
+        console.log(response)
         res.json({
           status: true,
           data: response,

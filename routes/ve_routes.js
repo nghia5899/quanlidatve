@@ -16,4 +16,8 @@ router.use('/datve', veController.datve)
 
 router.use('/huyve', veController.huyve)
 
+router.use('/kiemtra', veController.kiemtrave)
+
+router.use('/xacnhanthanhtoan', veController.xacnhanthanhtoan)
+
 module.exports = router
