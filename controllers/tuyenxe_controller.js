@@ -62,6 +62,27 @@ class TuyenXeController {
     })
 
   }
+
+  tinhtranggheDriver(req, res) {
+    var machuyen = req.query.machuyen;
+    tuyenxeModels.getTinhTrangGheDriver(machuyen, function(err, response) {
+      if (err) {
+        res.json({
+          status: false,
+          message: err.toString(),
+        });
+      }
+      else {
+        console.log('Tinh trang ghe driver')
+        console.log(response)
+        res.json({
+          status: true,
+          data: response,
+        });
+      }
+    })
+
+  }
 }
 
 module.exports = new TuyenXeController;

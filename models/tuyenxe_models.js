@@ -43,6 +43,25 @@ diaDiemModel.getTinhTrangGhe = (machuyen, result) => {
   }
 }
 
+diaDiemModel.getTinhTrangGheDriver = (machuyen, result) => {
+  let sql = "SELECT datvexe.MaDatVe, chuyenxe.MaChuyen, chuyenxe.Ngay, MaGhe, ThanhToan, LenXe FROM `datvexe` INNER JOIN chuyenxe on " +
+    "datvexe.MaChuyen = chuyenxe.MaChuyen WHERE datvexe.MaChuyen = " + machuyen + " AND LenXe = 0"
+  try {
+    db.query(sql, (err, response) => {
+      if (err) {
+        console.log(err)
+        return result(err, null)
+      }
+      else {
+        console.log('GetTinhTrangGheDriver thanh cong' )
+        return result(null, response)
+      }
+    });
+  } catch (error) {
+    return result(error, null)
+  }
+}
+
 diaDiemModel.getChuyenXe = (madiemdi, madiemden, ngay, result) => {
   let sql = "SELECT MaChuyen ,tuyenxe.MaTuyen, MaDiemDi, a.TenDiemDung as TenDiemDi, MaDiemDen, b.TenDiemDung as TenDiemDen, " +
     " thoigian.thoigiandi, thoigian.thoigianden, thoigian.giave, thoigian.socho , chuyenxe.Ngay" +

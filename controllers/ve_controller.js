@@ -60,6 +60,27 @@ class VeController {
     })
   }
 
+  vecuatoiID(req, res) {
+    var sodienthoai = req.decoded.data.sodienthoai
+    var madatve = req.query.madatve
+    console.log(sodienthoai)
+    veModel.getVeCuaToiID(sodienthoai, madatve, function(err, response) {
+        if (err) {
+          res.json({
+            status: false,
+            message: err.toString(),
+          });
+        }
+        else {
+          console.log('get ve cua toi id thanh cong')
+          res.json({
+            status: true,
+            data: response,
+          });
+        }
+    })
+  }
+
   datve(req, res) {
     var sodienthoai = req.decoded.data.sodienthoai
     var listve = req.body.listve

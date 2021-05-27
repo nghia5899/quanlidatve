@@ -46,7 +46,6 @@ laixeModel.khoihanh = (machuyen, thoigiandi, result) => {
         } catch  (error) {
           return result(error, null)
         }
-        return result(null, 'Khởi hành thành công')
       }
     })
   } catch (error) {

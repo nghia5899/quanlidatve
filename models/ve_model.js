@@ -62,6 +62,31 @@ veModel.getLichSu = (sodienthoai, result) => {
     }
 }
 
+veModel.getVeCuaToiID = (sodienthoai, madatve, result) => {
+  let SQL2 = " SELECT MaDatVe, chuyenxe.MaChuyen, tuyenxe.MaTuyen, c.TenTinh as TenTinhDi, a.TenDiemDung as TenDiemDi, d.TenTinh as TenTinhDen, b.TenDiemDung as TenDiemDen, " +
+  " thoigian.ThoiGianDi, thoigian.ThoiGianDen, thoigian.GiaVe, chuyenxe.Ngay, datvexe.TinhTrangVe, datvexe.MaGhe, datvexe.ThanhToan, datvexe.LenXe  from datvexe INNER JOIN " +
+  " chuyenxe ON datvexe.MaChuyen = chuyenxe.MaChuyen INNER JOIN tuyenxe ON chuyenxe.MaTuyen = tuyenxe.MaTuyen LEFT join diemdung as " +
+  " a on tuyenxe.MaDiemDi = a.MaDiemDung LEFT join diemdung as b on tuyenxe.MaDiemDen = b.MaDiemDung inner JOIN thoigian " +
+  " on tuyenxe.MaThoiGian = thoigian.MaThoiGian INNER JOIN tinh as c on a.MaTinh = c.MaTinh INNER JOIN tinh as d on b.MaTinh = " +
+  " d.MaTinh Where MaDatVe = " + madatve
+
+  try {
+    db.query(SQL2, (err, response) => {
+      if (err) {
+        console.log(err)
+        return result(err, null)
+      }
+      else {
+        console.log('GetVeCuaToiID thanh cong')
+        console.log(response)
+        return result(null, response)
+      }
+    })
+  } catch (error) {
+    return result(error, null)
+  }
+}
+
 veModel.datve = (machuyen, sodienthoai, maghe, result) => {
   let sql = "INSERT INTO `datvexe` (`MaDatVe`, `SoDienThoai`, `MaGhe`, `TinhTrangVe`, `MaChuyen`, `ThanhToan`, `LenXe`) "+
     " VALUES (NULL, '"+ sodienthoai+"', '"+ maghe +"', '0', '"+machuyen+"', '0', '0')"
@@ -72,6 +97,7 @@ veModel.datve = (machuyen, sodienthoai, maghe, result) => {
         return result(err, null)
       }
       else {
+        console.log(response)
         console.log('Dat ve thanh cong thanh cong')
         return result(null, response)
       }
